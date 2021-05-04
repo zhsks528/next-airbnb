@@ -7,6 +7,7 @@ import OpenedEyeIcon from "../../public/static/svg/auth/opened_eye.svg";
 import ClosedEyeIcon from "../../public/static/svg/auth/closed_eye.svg";
 import Input from "../common/Input";
 import Selector from "../common/Selector";
+import Button from "../common/Button";
 import { monthList, dayList, yearList } from "lib/staticData";
 import palette from "../../styles/palette";
 
@@ -60,6 +61,13 @@ const SignUpModalBirthdayYearSelector = styled.div`
   margin-right: 16px;
   width: 33.3333%;
 `;
+
+const SignUpModalSubmitButtonWrapper = styled.div`
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid ${palette.gray_eb};
+`;
+
 interface IProps {
   closePortal: () => void;
 }
@@ -100,17 +108,17 @@ const SignUpModal: React.FC<IProps> = ({ closePortal }) => {
   };
 
   // 생년월일 년도 변경 함수
-  const onChangeBirthYear = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeBirthYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setBirthYear(event.target.value);
   };
 
   // 생년월일 월 변경 함수
-  const onChangeBirthMonth = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeBirthMonth = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setBirthMonth(event.target.value);
   };
 
   // 생년월일 일 변경 함수
-  const onChangeBirthDay = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeBirthDay = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setBirthDay(event.target.value);
   };
 
@@ -192,6 +200,10 @@ const SignUpModal: React.FC<IProps> = ({ closePortal }) => {
           />
         </SignUpModalBirthdayYearSelector>
       </SignUpModalBirthdaySelectors>
+
+      <SignUpModalSubmitButtonWrapper>
+        <Button type="submit">가입하기</Button>
+      </SignUpModalSubmitButtonWrapper>
     </Container>
   );
 };
