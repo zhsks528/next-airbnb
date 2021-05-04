@@ -58,7 +58,6 @@ const SignUpModalBirthdayDaySelector = styled.div`
 `;
 
 const SignUpModalBirthdayYearSelector = styled.div`
-  margin-right: 16px;
   width: 33.3333%;
 `;
 
