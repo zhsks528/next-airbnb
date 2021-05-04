@@ -4,7 +4,7 @@ import CloseXIcon from "../../public/static/svg/modal/modal_close_x_icon.svg";
 import MailIcon from "../../public/static/svg/auth/mail.svg";
 import PersonIcon from "../../public/static/svg/auth/person.svg";
 import OpenedEyeIcon from "../../public/static/svg/auth/opened_eye.svg";
-import palette from "../../styles/palette";
+import Input from "../common/Input";
 
 const Container = styled.div`
   width: 568px;
@@ -23,27 +23,6 @@ const ModalCloseXIcon = styled(CloseXIcon)`
 const InputWrapper = styled.div`
   position: relative;
   margin-bottom: 16px;
-
-  svg {
-    position: absolute;
-    right: 11px;
-    top: 16px;
-  }
-`;
-
-const Input = styled.input`
-  position: relative;
-  width: 100%;
-  height: 46px;
-  padding: 0 44px 0 11px;
-  border: 1px solid ${palette.gray_eb};
-  border-radius: 4px;
-  font-size: 16px;
-  outline: none;
-
-  ::placeholder {
-    color: ${palette.gray_76};
-  }
 `;
 
 const SignUpModal: React.FC = () => {
@@ -51,20 +30,25 @@ const SignUpModal: React.FC = () => {
     <Container>
       <ModalCloseXIcon />
       <InputWrapper>
-        <Input placeholder="이메일 주소" type="email" name="email" />
-        <MailIcon />
+        <Input
+          placeholder="이메일 주소"
+          type="email"
+          name="email"
+          icon={<MailIcon />}
+        />
       </InputWrapper>
       <InputWrapper>
-        <Input placeholder="이름(예: 길동)" />
-        <PersonIcon />
+        <Input placeholder="이름(예: 길동)" icon={<PersonIcon />} />
       </InputWrapper>
       <InputWrapper>
-        <Input placeholder="성(예: 홍)" />
-        <PersonIcon />
+        <Input placeholder="성(예: 홍)" icon={<PersonIcon />} />
       </InputWrapper>
       <InputWrapper>
-        <Input placeholder="비밀번호 설정하기" type="password" />
-        <OpenedEyeIcon />
+        <Input
+          placeholder="비밀번호 설정하기"
+          type="password"
+          icon={<OpenedEyeIcon />}
+        />
       </InputWrapper>
     </Container>
   );
