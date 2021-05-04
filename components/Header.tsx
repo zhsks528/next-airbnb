@@ -64,7 +64,7 @@ const LoginButton = styled.button`
 `;
 
 const Header: React.FC = () => {
-  const { openModal, ModalPortal } = useModal();
+  const { openModal, closeModal, ModalPortal } = useModal();
 
   return (
     <Container>
@@ -79,7 +79,7 @@ const Header: React.FC = () => {
         <LoginButton>로그인</LoginButton>
       </AuthButtons>
       <ModalPortal>
-        <SignUpModal />
+        <SignUpModal closePortal={closeModal} />
       </ModalPortal>
     </Container>
   );

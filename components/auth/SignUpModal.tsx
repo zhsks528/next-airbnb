@@ -26,7 +26,11 @@ const InputWrapper = styled.div`
   margin-bottom: 16px;
 `;
 
-const SignUpModal: React.FC = () => {
+interface IProps {
+  closePortal: () => void;
+}
+
+const SignUpModal: React.FC<IProps> = ({ closePortal }) => {
   const [email, setEmail] = useState("");
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -60,7 +64,7 @@ const SignUpModal: React.FC = () => {
 
   return (
     <Container>
-      <ModalCloseXIcon />
+      <ModalCloseXIcon onClick={closePortal} />
       <InputWrapper>
         <Input
           placeholder="이메일 주소"
