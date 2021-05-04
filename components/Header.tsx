@@ -9,7 +9,7 @@ import useModal from "../hooks/useModal";
 import palette from "../styles/palette";
 import AirbnbLogoIcon from "../public/static/svg/logo/logo.svg";
 import AirbnbLogoTextIcon from "../public/static/svg/logo/logo_text.svg";
-import HamburgetIcon from "../public/static/svg/header/hamburger.svg";
+import HamburgerIcon from "../public/static/svg/header/hamburger.svg";
 
 const Container = styled.div`
   position: sticky;
@@ -67,7 +67,7 @@ const LoginButton = styled.button`
   }
 `;
 
-const HeaderUserProfile = styled.button`
+const UserProfile = styled.button`
   display: flex;
   align-items: center;
   height: 42px;
@@ -84,7 +84,7 @@ const HeaderUserProfile = styled.button`
   }
 `;
 
-const HeaderUserProfileImage = styled.img`
+const UserProfileImage = styled.img`
   margin-left: 8px;
   width: 30px;
   height: 30px;
@@ -128,10 +128,10 @@ const Header: React.FC = () => {
         </AuthButtons>
       )}
       {user.isLogged && (
-        <HeaderUserProfile type="button">
-          <HamburgetIcon />
-          <HeaderUserProfileImage src={user.profileImage} alt="" />
-        </HeaderUserProfile>
+        <UserProfile type="button">
+          <HamburgerIcon />
+          <UserProfileImage src={user.profileImage} alt="" />
+        </UserProfile>
       )}
       <ModalPortal>
         <AuthModal closeModal={closeModal} />

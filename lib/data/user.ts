@@ -28,7 +28,7 @@ const write = async (users: StoredUserType[]) => {
 };
 
 // 이메일의 유저 불러오기
-const find = ({ email }): { email: string } => {
+const find = ({ email }: { email: string }) => {
   const users = getList();
 
   return users.find((user) => user.email === email);

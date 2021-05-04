@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import data from "../../../lib/data";
+import Data from "../../../lib/data";
 import { StoredUserType } from "types/user";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -14,7 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return res.send("필수 데이터가 없습니다.");
       }
 
-      const user = await data.user.find({ email });
+      const user = await Data.user.find({ email });
       if (!user) {
         res.statusCode = 404;
         return res.send("해당 이메일의 유저가 없습니다.");
@@ -42,6 +42,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.statusCode = 200;
       return res.send(user);
     } catch (e) {
+      console.log(e);
       res.statusCode = 500;
       return res.send(e);
     }

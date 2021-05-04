@@ -5,13 +5,13 @@ import Input from "../common/Input";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth";
 import { userActions } from "../../store/user";
+import useValidateMode from "../../hooks/useValidateMode";
 import { loginAPI } from "../../lib/api/auth";
 import palette from "../../styles/palette";
 import CloseXIcon from "../../public/static/svg/modal/modal_close_x_icon.svg";
 import MailIcon from "../../public/static/svg/auth/mail.svg";
 import OpenedEyeIcon from "../../public/static/svg/auth/opened_eye.svg";
 import ClosedEyeIcon from "../../public/static/svg/auth/closed_eye.svg";
-import useValidateMode from "../../hooks/useValidateMode";
 
 const Container = styled.form`
   width: 568px;
@@ -120,6 +120,7 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
       <InputWrapper>
         <Input
           placeholder="비밀번호 설정하기"
+          name="password"
           type={isPasswordHided ? "password" : "text"}
           icon={
             isPasswordHided ? (
@@ -138,7 +139,7 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
         <Button type="submit">로그인</Button>
       </LoginModalSubmitButtonWrapper>
       <p>
-        이미 에어비앤비 계정이 있나요?
+        에어비앤비 계정이 없으세요?
         <LoginModalSetSignUp role="presentation" onClick={changeToSignUpModal}>
           회원가입
         </LoginModalSetSignUp>

@@ -7,7 +7,6 @@ import PasswordWarning from "./PasswordWarning";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user";
 import { authActions } from "../../store/auth";
-import { commonActions } from "../../store/common";
 import useValidateMode from "../../hooks/useValidateMode";
 import { monthList, dayList, yearList } from "../../lib/staticData";
 import { signupAPI } from "../../lib/api/auth";
@@ -18,9 +17,9 @@ import PersonIcon from "../../public/static/svg/auth/person.svg";
 import OpenedEyeIcon from "../../public/static/svg/auth/opened_eye.svg";
 import ClosedEyeIcon from "../../public/static/svg/auth/closed_eye.svg";
 
-const Container = styled.div`
+const Container = styled.form`
   width: 568px;
-  height: 614px;
+  min-height: 614px;
   padding: 32px;
   background-color: white;
   z-index: 11;
@@ -206,8 +205,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     event.preventDefault();
     setValidateMode(true);
 
-    dispatch(commonActions.setValidateMode(true));
-
+    console.log(validateSignUpForm());
     if (validateSignUpForm()) {
       try {
         const signUpBody = {
@@ -226,7 +224,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
 
         closeModal();
 
-        console.log(userActions.setLoggedUser(data));
+        console.log(data);
       } catch (e) {
         console.log(e);
       }
@@ -239,7 +237,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   };
 
   return (
-    <Container>
+    <Container onSubmit={onSubmitSignUp}>
       <ModalCloseXIcon onClick={closeModal} />
       <InputWrapper>
         <Input
@@ -354,6 +352,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         <Button type="submit">가입하기</Button>
       </SignUpModalSubmitButtonWrapper>
       <p>
+        이미 에어비앤비 계정이 있나요?
         <SignUpModalSetLogin role="presentation" onClick={changeToLoginModal}>
           로그인
         </SignUpModalSetLogin>
