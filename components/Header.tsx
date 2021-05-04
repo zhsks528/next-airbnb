@@ -64,6 +64,8 @@ const LoginButton = styled.button`
 `;
 
 const Header: React.FC = () => {
+  const { openModal, ModalPortal } = useModal();
+
   return (
     <Container>
       <Link href="/">
@@ -73,9 +75,12 @@ const Header: React.FC = () => {
         </Wrapper>
       </Link>
       <AuthButtons>
-        <SignUpButton>회원가입</SignUpButton>
+        <SignUpButton onClick={openModal}>회원가입</SignUpButton>
         <LoginButton>로그인</LoginButton>
       </AuthButtons>
+      <ModalPortal>
+        <SignUpModal />
+      </ModalPortal>
     </Container>
   );
 };
