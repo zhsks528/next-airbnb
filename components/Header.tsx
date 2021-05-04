@@ -6,6 +6,8 @@ import useModal from "../hooks/useModal";
 import SignUpModal from "./auth/SignUpModal";
 import AirbnbLogoIcon from "../public/static/svg/logo/logo.svg";
 import AirbnbLogoTextIcon from "../public/static/svg/logo/logo_text.svg";
+import { useSelector } from "../store";
+import HamburgetIcon from "../public/static/svg/header/hamburger.svg";
 
 const Container = styled.div`
   position: sticky;
@@ -63,8 +65,34 @@ const LoginButton = styled.button`
   }
 `;
 
+const HeaderUserProfile = styled.button`
+  display: flex;
+  align-items: center;
+  height: 42px;
+  padding: 0 6px 0 16px;
+  border: 0;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.18);
+  border-radius: 21px;
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
+  }
+`;
+
+const HeaderUserProfileImage = styled.img`
+  margin-left: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+`;
+
 const Header: React.FC = () => {
   const { openModal, closeModal, ModalPortal } = useModal();
+
+  const user = useSelector((state) => state.user);
 
   return (
     <Container>
@@ -74,10 +102,20 @@ const Header: React.FC = () => {
           <AirbnbLogoTextIcon />
         </Wrapper>
       </Link>
-      <AuthButtons>
-        <SignUpButton onClick={openModal}>회원가입</SignUpButton>
-        <LoginButton>로그인</LoginButton>
-      </AuthButtons>
+      {!user.isLogged && (
+        <AuthButtons>
+          <SignUpButton type="button" onClick={openModal}>
+            회원가입
+          </SignUpButton>
+          <LoginButton type="button">로그인</LoginButton>
+        </AuthButtons>
+      )}
+      {user.isLogged && (
+        <HeaderUserProfile type="button">
+          <HamburgetIcon />
+          <HeaderUserProfileImage src={user.profileImage} alt="" />
+        </HeaderUserProfile>
+      )}
       <ModalPortal>
         <SignUpModal closeModal={closeModal} />
       </ModalPortal>
