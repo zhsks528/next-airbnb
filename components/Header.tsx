@@ -79,7 +79,7 @@ const Header: React.FC = () => {
         <LoginButton>로그인</LoginButton>
       </AuthButtons>
       <ModalPortal>
-        <SignUpModal closePortal={closeModal} />
+        <SignUpModal closeModal={closeModal} />
       </ModalPortal>
     </Container>
   );
