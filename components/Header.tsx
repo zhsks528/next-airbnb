@@ -1,12 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import palette from "../styles/palette";
+import { useDispatch } from "react-redux";
+import { useSelector } from "../store";
+import { authActions } from "../store/auth";
+import AuthModal from "./auth/AuthModal";
 import useModal from "../hooks/useModal";
-import SignUpModal from "./auth/SignUpModal";
+import palette from "../styles/palette";
 import AirbnbLogoIcon from "../public/static/svg/logo/logo.svg";
 import AirbnbLogoTextIcon from "../public/static/svg/logo/logo_text.svg";
-import { useSelector } from "../store";
 import HamburgetIcon from "../public/static/svg/header/hamburger.svg";
 
 const Container = styled.div`
@@ -92,6 +94,7 @@ const HeaderUserProfileImage = styled.img`
 const Header: React.FC = () => {
   const { openModal, closeModal, ModalPortal } = useModal();
 
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
   return (
@@ -104,10 +107,24 @@ const Header: React.FC = () => {
       </Link>
       {!user.isLogged && (
         <AuthButtons>
-          <SignUpButton type="button" onClick={openModal}>
+          <SignUpButton
+            type="button"
+            onClick={() => {
+              dispatch(authActions.setAuthMode("signup"));
+              openModal();
+            }}
+          >
             회원가입
           </SignUpButton>
-          <LoginButton type="button">로그인</LoginButton>
+          <LoginButton
+            type="button"
+            onClick={() => {
+              dispatch(authActions.setAuthMode("login"));
+              openModal();
+            }}
+          >
+            로그인
+          </LoginButton>
         </AuthButtons>
       )}
       {user.isLogged && (
@@ -117,7 +134,7 @@ const Header: React.FC = () => {
         </HeaderUserProfile>
       )}
       <ModalPortal>
-        <SignUpModal closeModal={closeModal} />
+        <AuthModal closeModal={closeModal} />
       </ModalPortal>
     </Container>
   );

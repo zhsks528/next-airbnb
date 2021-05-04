@@ -1,20 +1,22 @@
 import React, { useEffect, useMemo, useState } from "react";
+import styled from "styled-components";
+import Input from "../common/Input";
+import Selector from "../common/Selector";
+import Button from "../common/Button";
+import PasswordWarning from "./PasswordWarning";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user";
-import styled from "styled-components";
+import { authActions } from "../../store/auth";
+import { commonActions } from "../../store/common";
+import useValidateMode from "../../hooks/useValidateMode";
+import { monthList, dayList, yearList } from "../../lib/staticData";
+import { signupAPI } from "../../lib/api/auth";
+import palette from "../../styles/palette";
 import CloseXIcon from "../../public/static/svg/modal/modal_close_x_icon.svg";
 import MailIcon from "../../public/static/svg/auth/mail.svg";
 import PersonIcon from "../../public/static/svg/auth/person.svg";
 import OpenedEyeIcon from "../../public/static/svg/auth/opened_eye.svg";
 import ClosedEyeIcon from "../../public/static/svg/auth/closed_eye.svg";
-import Input from "../common/Input";
-import Selector from "../common/Selector";
-import Button from "../common/Button";
-import { monthList, dayList, yearList } from "lib/staticData";
-import palette from "../../styles/palette";
-import { signupAPI } from "../../lib/api/auth";
-import useValidateMode from "../../hooks/useValidateMode";
-import PasswordWarning from "./PasswordWarning";
 
 const Container = styled.div`
   width: 568px;
@@ -231,6 +233,11 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     }
   };
 
+  // 회원가입 -> 로그인 변경 함수
+  const changeToLoginModal = () => {
+    dispatch(authActions.setAuthMode("login"));
+  };
+
   return (
     <Container>
       <ModalCloseXIcon onClick={closeModal} />
@@ -347,7 +354,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         <Button type="submit">가입하기</Button>
       </SignUpModalSubmitButtonWrapper>
       <p>
-        <SignUpModalSetLogin role="presentation" onClick={() => {}}>
+        <SignUpModalSetLogin role="presentation" onClick={changeToLoginModal}>
           로그인
         </SignUpModalSetLogin>
       </p>
