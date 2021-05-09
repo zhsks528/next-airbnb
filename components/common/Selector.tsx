@@ -50,15 +50,14 @@ const Selector: React.FC<IProps> = ({
   ...props
 }) => {
   const validateMode = useSelector((state) => state.common.validateMode);
-
   return (
     <Container isValid={!!isValid} validateMode={validateMode}>
       <SelectWrapper {...props}>
-        {options?.map((option, index) => {
+        {options.map((option, index) => (
           <option key={index} disabled={disabledOptions.includes(option)}>
             {option}
-          </option>;
-        })}
+          </option>
+        ))}
       </SelectWrapper>
     </Container>
   );
