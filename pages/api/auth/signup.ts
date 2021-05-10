@@ -45,9 +45,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     Data.user.write([...users, newUser]);
 
     const token = jwt.sign(String(newUser.id), process.env.JWT_SECRET!);
+
     res.setHeader(
-      "set-Cookie",
-      `access_token=${token}; path=/; expires=${new Date(
+      "Set-Cookie",
+      `access_token=${token}; Path=/; Expires=${new Date(
         Date.now() + 60 * 60 * 24 * 1000 * 3 //3일
       )}; httponly`
     );

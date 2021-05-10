@@ -52,5 +52,14 @@
     "birthday": "2004-02-02T15:00:00.000Z",
     "id": 5,
     "profileImage": "/static/image/default_user_profile_image.jpg"
+  },
+  {
+    "id": 6,
+    "email": "hsm950825@naver.com",
+    "firstname": "한",
+    "lastname": "성민",
+    "password": "$2a$08$4mTGDup/b7PvQ4QT6r8sVONBsxe26qDBIawJuLmMdUEqldyUE4T2G",
+    "birthday": "1995-08-24T15:00:00.000Z",
+    "profileImage": "/static/image/user/default_user_profile_image.jpg"
   }
 ]

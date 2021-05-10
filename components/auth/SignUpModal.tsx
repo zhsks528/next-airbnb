@@ -205,15 +205,14 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     event.preventDefault();
     setValidateMode(true);
 
-    console.log(validateSignUpForm());
     if (validateSignUpForm()) {
       try {
         const signUpBody = {
           email,
-          lastname,
           firstname,
+          lastname,
           password,
-          birthDay: new Date(
+          birthday: new Date(
             `${birthYear}-${birthMonth!.replace("월", "")}-${birthDay}`
           ).toISOString(),
         };
@@ -223,8 +222,6 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         dispatch(userActions.setLoggedUser(data));
 
         closeModal();
-
-        console.log(data);
       } catch (e) {
         console.log(e);
       }
